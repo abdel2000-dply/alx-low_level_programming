@@ -8,25 +8,19 @@ int main(void)
 {
 	int n, m, l, k;
 
-	for (n = 0; n <= 9; n++)
+	for (n = 0; n <= 98; n++)
 	{
-		for (m = 0; m <= 8; m++)
+		for (m = n + 1; m <= 99; m++)
 		{
-			for (l = 0; l <= 9; l++)
+			putchar(n / 10 + '0'); /*example: 23 will print 2 */
+			putchar(n % 10 + '0'); /* 23 will print 3 */
+			putchar(' ');
+			putchar(m / 10 + '0');
+			putchar(m % 10 + '0');
+			if (n != 98 || m != 99)
 			{
-				for (k = m + 1; k <= 9; k++)
-				{
-					putchar(n + '0');
-					putchar(m + '0');
-					putchar(' ');
-					putchar(l + '0');
-					putchar(k + '0');
-					if (n != 9 || m != 8 || l != 9 || k != 9)
-					{
-						putchar(',');
-						putchar(' ');
-					}
-				}
+				putchar(',');
+				putchar(' ');
 			}
 		}
 	}
