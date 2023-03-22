@@ -12,7 +12,7 @@ int main(void)
 	printf("%lu, %lu, ", n1, n2);
 	for (i = 3; i <= 98; i++)
 	{
-		nextNum = n1 + n2;
+		nextNum = (n1 + n2) % 1000000000;
 		printf("%lu", nextNum);
 		if (i != 50)
 		{
