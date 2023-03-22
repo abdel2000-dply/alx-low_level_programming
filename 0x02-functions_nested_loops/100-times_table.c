@@ -23,7 +23,11 @@ void print_times_table(int n)
 			res = i * j;
 			if (res >= 10 && res < 100)
 			{
-				printf("  ,%d%d", res / 10, res % 10);
+				_putchar(',');
+				_putchar(' ');
+				_putchar(' ');
+				_putchar((res / 10) + '0');
+				_putchar((res % 10) + '0');
 			}
 			else if (res >= 100)
 			{	
