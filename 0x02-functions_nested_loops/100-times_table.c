@@ -26,7 +26,7 @@ void print_times_table(int n)
 				printf("  ,%d%d", res / 10, res % 10);
 			}
 			else if (res >= 100)
-			{
+			{	
 				_putchar(',');
 				_putchar(' ');
 				_putchar((res / 100) + '0');
@@ -42,8 +42,8 @@ void print_times_table(int n)
 					_putchar(' ');
 					_putchar(' ');
 				}
-			}
 				_putchar(res + '0');
+			}
 		}
 		_putchar('\n');
 	}
