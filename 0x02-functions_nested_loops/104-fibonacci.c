@@ -10,9 +10,7 @@ int main(void)
 
 	n1 = 1, n2 = 2;
 	printf("%lu, %lu, ", n1, n2);
-	for (i = 3; i <= 98; i++)
-	{
-	if (i <= 92)
+	for (i = 3; i <= 93; i++)
 	{
 		nextNum = n1 + n2;
 		printf("%lu", nextNum);
@@ -21,15 +19,13 @@ int main(void)
 		n1 = n2;
 		n2 = nextNum;
 	}
-	else
-	{
+	for (i = 93; i <= 98; i++)
 		next1 = (n1 + n2) / 1000000;
 		next2 = (n1 + n2) % 1000000;
 		printf("%lu %lu", next1, next2);
 		printf(", ");
 		n1 = n2;
 		n2 = (next1 * 1000000) + next2;
-	}
 	}
 	printf("\n");
 	return (0);
