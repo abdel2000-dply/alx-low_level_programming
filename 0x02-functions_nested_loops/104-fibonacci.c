@@ -23,12 +23,12 @@ int main(void)
 	}
 	else
 	{
-		next1 = (n1 + n2) / 10000000000;
-		next2 = (n1 + n2) % 10000000000;
-		printf("%lu%lu", next1, next2);
+		next1 = (n1 + n2) / 1000000;
+		next2 = (n1 + n2) % 1000000;
+		printf("%lu %lu", next1, next2);
 		printf(", ");
 		n1 = n2;
-		n2 = (next1 * 10000000000) + next2;
+		n2 = (next1 * 1000000) + next2;
 	}
 	}
 	printf("\n");
