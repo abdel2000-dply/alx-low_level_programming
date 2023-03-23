@@ -6,7 +6,7 @@
  */
 int main(void)
 {
-	unsigned long n1, n2, nextNum, i, next1, next2, n11, n13, n22, m23;
+	unsigned long n1, n2, nextNum, i, next1, next2, n11, n13, n22, n23;
 
 	n1 = 1, n2 = 2;
 	printf("%lu, %lu, ", n1, n2);
