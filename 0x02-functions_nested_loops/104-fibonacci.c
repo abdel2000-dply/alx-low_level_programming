@@ -28,8 +28,7 @@ int main(void)
 		n23 = n2 % 1000000;
 		next1 = n11 + n22;
 		next2 = n13 + n23;
-		_putchar(next1 + '0');
-		_putchar(next2 + '0');
+		printf("%lu%lu", next1, next2);
 		printf(", ");
 		n11 = n22;
 		n13 = n23;
