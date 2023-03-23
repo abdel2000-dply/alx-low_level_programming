@@ -20,6 +20,7 @@ int main(void)
 		n2 = nextNum;
 	}
 	for (i = 93; i <= 98; i++)
+	{
 		next1 = (n1 + n2) / 1000000;
 		next2 = (n1 + n2) % 1000000;
 		printf("%lu %lu", next1, next2);
