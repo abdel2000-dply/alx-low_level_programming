@@ -21,12 +21,12 @@ int main(void)
 	}
 	for (i = 93; i <= 98; i++)
 	{
-		next1 = (n1 + n2) / 1000000;
-		next2 = (n1 + n2) % 1000000;
+		next1 = (n1 + n2) / 1000000ul;
+		next2 = (n1 + n2) % 1000000ul;
 		printf("%lu %lu", next1, next2);
 		printf(", ");
 		n1 = n2;
-		n2 = (next1 * 1000000) + next2;
+		n2 = (next1 * 1000000ul) + next2;
 	}
 	printf("\n");
 	return (0);
