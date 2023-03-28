@@ -20,7 +20,7 @@ int main(void)
 
     while (sum < 2772)
     {
-        pswd[i] = 48 + rand() % 75; // limit character set to printable ASCII values
+        pswd[i] = 48 + rand() % 75;
         sum += pswd[i++];
     }
     pswd[i] = '\0';
