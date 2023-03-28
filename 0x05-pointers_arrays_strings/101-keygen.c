@@ -12,57 +12,50 @@
 int main(void)
 {
     char pswd[84];
-    int i, j, sum = 0;
+    int i = 0;
+    int sum = 0;
     int a, b;
+    int count = 0;
 
-    srand(time(NULL));
+    srand(time(0));
 
-    for (i = 0; i < 10; i++)
+    while (count < 10)
     {
-        j = rand() % 3;
-        if (j == 0)
-            pswd[i] = 'A' + rand() % 26;
-        else if (j == 1)
-            pswd[i] = 'a' + rand() % 26;
-        else
-            pswd[i] = '0' + rand() % 10;
-    }
-
-    while (sum < 2772)
-    {
-        i = rand() % 10;
-        if (pswd[i] >= 'A' && pswd[i] <= 'Z')
-            pswd[i] = 'a' + rand() % 26;
-        else if (pswd[i] >= 'a' && pswd[i] <= 'z')
-            pswd[i] = 'A' + rand() % 26;
-        else
-            pswd[i] = 'A' + rand() % 26;
+        i = 0;
         sum = 0;
-        for (j = 0; j < 10; j++)
-            sum += pswd[j];
-    }
-    pswd[10] = '\0';
-    a = (sum - 2772) / 2;
-    b = (sum - 2772) / 2;
-    if ((sum - 2772) % 2 != 0)
-        a++;
-    for (i = 0; pswd[i]; i++)
-    {
-        if (pswd[i] >= ('A' + a))
+
+        while (sum < 2772)
         {
-            pswd[i] -= a;
-            break;
+            pswd[i] = 33 + rand() % 94;
+            sum += pswd[i++];
         }
-    }
-    for (i = 0; pswd[i]; i++)
-    {
-        if (pswd[i] >= ('A' + b))
+        pswd[i] = '\0';
+        if (sum != 2772)
         {
-            pswd[i] -= b;
-            break;
+            a = (sum - 2772) / 2;
+            b = (sum - 2772) / 2;
+            if ((sum - 2772) % 2 != 0)
+                a++;
+            for (i = 0; pswd[i]; i++)
+            {
+                if (pswd[i] >= (33 + a))
+                {
+                    pswd[i] -= a;
+                    break;
+                }
+            }
+            for (i = 0; pswd[i]; i++)
+            {
+                if (pswd[i] >= (33 + b))
+                {
+                    pswd[i] -= b;
+                    break;
+                }
+            }
         }
+        printf("%s\n", pswd);
+        count++;
     }
-    printf("%s\n", pswd);
     return (0);
 }
 
