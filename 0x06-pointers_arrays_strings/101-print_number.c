@@ -11,8 +11,6 @@ void print_number(int n)
 	int i;
 	unsigned int dig, div;
 
-	div = 1;
-
 	if (n < 0)
 	{
 		_putchar('-');
@@ -20,13 +18,14 @@ void print_number(int n)
 	}
 	/* counting div ( number of digits ) */
 	i = n;
+	div = 1;
 	while (i > 9)
 	{
 		div *= 10;
 		i /= 10;
 	}
 	/* printing */
-	while (div > 0)
+	while (div >= 1)
 	{
 		dig = (n / div) % 10;
 		_putchar(dig + '0');
