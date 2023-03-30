@@ -7,9 +7,8 @@
  * Return: 0
  */
 void print_number(int n)
-{
-	int i;
-	unsigned int dig, div;
+
+	unsigned int i, dig, div;
 
 	if (n < 0)
 	{
