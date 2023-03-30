@@ -7,13 +7,13 @@
  * Return: 0
  */
 void print_number(int n)
-
+{
 	unsigned int i, dig, div;
 
 	if (n < 0)
 	{
 		_putchar('-');
-		n *= -1;
+		n = -n;
 	}
 	/* counting div ( number of digits ) */
 	i = n;
