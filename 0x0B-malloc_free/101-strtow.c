@@ -14,10 +14,9 @@ int count_words(char *str)
 	{
 		if (str[i] != ' ')
 		{
-			count++;
-
 			while (str[i] != ' ' && str[i] != '\0')
 				i++;
+			count++;
 		}
 		else
 		{
