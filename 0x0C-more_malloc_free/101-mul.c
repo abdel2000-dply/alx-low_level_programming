@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
  * is_digit - checks if a character is a digit
@@ -15,12 +16,11 @@ int is_digit(char c)
 /**
  * str_len - computes the length of a string
  * @s: the string to compute the length of
- *
  * Return: the length of s
  */
-size_t str_len(char *s)
+int str_len(char *s)
 {
-        size_t i = 0;
+        int i = 0;
 
         while (s[i])
                 i++;
@@ -29,37 +29,16 @@ size_t str_len(char *s)
 }
 
 /**
- * printString - prints a string
- * @s: string
- *
- * Return: nothing
- */
-void printString(char *s)
-{
-        int i;
-
-        for (i = 0; s[i] != '\0'; i++)
-                _putchar(s[i]);
-        _putchar('\n');
-}
-
-/**
  * multiply - multiplies two positive numbers
  * @num1: first number to multiply
  * @num2: second number to multiply
+ * @result: array to store the result
  */
-void multiply(char *num1, char *num2)
+void multiply(char *num1, char *num2, int *result)
 {
         int i, j;
         int len1 = str_len(num1);
         int len2 = str_len(num2);
-        int *result = calloc(len1 + len2, sizeof(int));
-
-        if (result == NULL)
-        {
-                printString("Error");
-                exit(98);
-        }
 
         for (i = len1 - 1; i >= 0; i--)
         {
@@ -74,14 +53,6 @@ void multiply(char *num1, char *num2)
                 result[i - 1] += result[i] / 10;
                 result[i] %= 10;
         }
-
-        for (i = 0; i < len1 + len2; i++)
-        {
-                _putchar(result[i] + '0');
-        }
-
-        _putchar('\n');
-        free(result);
 }
 
 /**
@@ -95,10 +66,14 @@ int main(int argc, char **argv)
 {
         int i, j;
         char *num1, *num2;
+        char e[] = "Error";
+        int *result;
 
         if (argc != 3)
         {
-                printString("Error");
+                for (i = 0; e[i] != '\0'; i++)
+                        _putchar(e[i]);
+                _putchar('\n');
                 exit(98);
         }
 
@@ -108,7 +83,9 @@ int main(int argc, char **argv)
                 {
                         if (!is_digit(argv[i][j]))
                         {
-                                printString("Error");
+                                for (i = 0; e[i] != '\0'; i++)
+                                        _putchar(e[i]);
+                                _putchar('\n');
                                 exit(98);
                         }
                 }
@@ -116,7 +93,29 @@ int main(int argc, char **argv)
 
         num1 = argv[1];
         num2 = argv[2];
-        multiply(num1, num2);
-        return (0);
-}
+        result = calloc(str_len(num1) + str_len(num2), sizeof(int));
 
+        if (result == NULL)
+        {
+                for (i = 0; e[i] != '\0'; i++)
+                        _putchar(e[i]);
+                _putchar('\n');
+                exit(98);
+        }
+
+        multiply(num1, num2, result);
+
+        i = 0;
+        while (i < str_len(num1) + str_len(num2) && result[i] == 0)
+                i++;
+
+        if (i == str_len(num1) + str_len(num2))
+                _putchar('0');
+        else
+        {
+                for (; i < str_len(num1) + str_len(num2); i++)
+			putchar(result[i] + '0');
+	}
+	putchar('\n');
+	return (0);
+}
