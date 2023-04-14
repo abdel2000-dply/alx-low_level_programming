@@ -1,121 +1,123 @@
-#include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
 
 /**
- * is_digit - checks if a character is a digit
- * @c: the character to check
+ * is_number - checks if a string is a number
+ * @s: the string to check
  *
- * Return: 1 if c is a digit, 0 otherwise
+ * Return: 1 if s is a number, 0 otherwise
  */
-int is_digit(char c)
+
+int is_number(char *s)
 {
-        return (c >= '0' && c <= '9');
-}
+	int i;
 
-/**
- * str_len - computes the length of a string
- * @s: the string to compute the length of
- * Return: the length of s
- */
-int str_len(char *s)
-{
-        int i = 0;
-
-        while (s[i])
-                i++;
-
-        return (i);
-}
-
-/**
- * multiply - multiplies two positive numbers
- * @num1: first number to multiply
- * @num2: second number to multiply
- * @result: array to store the result
- */
-void multiply(char *num1, char *num2, int *result)
-{
-        int i, j;
-        int len1 = str_len(num1);
-        int len2 = str_len(num2);
-
-        for (i = len1 - 1; i >= 0; i--)
-        {
-                for (j = len2 - 1; j >= 0; j--)
-                {
-                        result[i + j + 1] += (num1[i] - '0') * (num2[j] - '0');
-                }
-        }
-
-        for (i = len1 + len2 - 1; i > 0; i--)
-        {
-                result[i - 1] += result[i] / 10;
-                result[i] %= 10;
-        }
-}
-
-/**
- * main - multiplies two positive numbers
- * @argc: the number of arguments
- * @argv: the arguments
- *
- * Return: 0 on success, 98 on error
- */
-int main(int argc, char **argv)
-{
-        int i, j;
-        char *num1, *num2;
-        char e[] = "Error";
-        int *result;
-
-        if (argc != 3)
-        {
-                for (i = 0; e[i] != '\0'; i++)
-                        _putchar(e[i]);
-                _putchar('\n');
-                exit(98);
-        }
-
-        for (i = 1; i < argc; i++)
-        {
-                for (j = 0; argv[i][j] != '\0'; j++)
-                {
-                        if (!is_digit(argv[i][j]))
-                        {
-                                for (i = 0; e[i] != '\0'; i++)
-                                        _putchar(e[i]);
-                                _putchar('\n');
-                                exit(98);
-                        }
-                }
-        }
-
-        num1 = argv[1];
-        num2 = argv[2];
-        result = calloc(str_len(num1) + str_len(num2), sizeof(int));
-
-        if (result == NULL)
-        {
-                for (i = 0; e[i] != '\0'; i++)
-                        _putchar(e[i]);
-                _putchar('\n');
-                exit(98);
-        }
-
-        multiply(num1, num2, result);
-
-        i = 0;
-        while (i < str_len(num1) + str_len(num2) && result[i] == 0)
-                i++;
-
-        if (i == str_len(num1) + str_len(num2))
-                _putchar('0');
-        else
-        {
-                for (; i < str_len(num1) + str_len(num2); i++)
-			putchar(result[i] + '0');
+	for (i = 0; s[i]; i++)
+	{
+		if (!(s[i] >= '0' && s[i] <= '9'))
+			return (0);
 	}
+	return (1);
+}
+
+/**
+ * error - prints an error message and exits the program with code 98
+ */
+
+void error(void)
+{
+	printf("Error\n");
+	exit(98);
+}
+
+/**
+ * str_len - calculates the length of a string
+ * @str: the string to calculate the length of
+ *
+ * Return: the length of str
+ */
+
+int str_len(char *str)
+{
+	int i = 0;
+
+	while (str[i])
+		i++;
+	return (i);
+}
+
+/**
+ * compute_mult - computes the product of two numbers represented as strings
+ * @len1: the length of the first number string
+ * @len2: the length of the second number string
+ * @s1: the first number string
+ * @s2: the second number string
+ * @result: an array to store the resulting product
+ */
+
+void compute_mult(int len1, int len2, char *s1, char *s2, int *result)
+{
+	int carry = 0;
+	int digit1 = 0;
+	int digit2 = 0;
+	int i, j;
+
+	for (i = 0; i < len1 + len2 + 1; i++)
+		result[i] = 0;
+
+	for (i = len1 - 1; i >= 0; i--)
+	{
+		digit1 = s1[i] - '0';
+		carry = 0;
+		for (j = len2 - 1; j >= 0; j--)
+		{
+			digit2 = s2[j] - '0';
+			carry += result[i + j + 1] + (digit1 * digit2);
+			result[i + j + 1] = carry % 10;
+			carry /= 10;
+		}
+		if (carry > 0)
+			result[i + j + 1] = carry;
+	}
+}
+
+/**
+ * main - the entry point of the program
+ * @ac: the number of command-line arguments
+ * @av: an array of strings representing the command-line arguments
+ *
+ * Return: 0 on success, 98 on failure
+ */
+
+int main(int ac, char *av[])
+{
+	int len1 = 0, len2 = 0, *result;
+	char *s1, *s2;
+	int checker = 0;
+	int i;
+
+	if (ac != 3)
+		error();
+	if (!(is_number(av[1]) && is_number(av[2])))
+		error();
+	s1 = av[1];
+	s2 = av[2];
+	len1 = str_len(s1);
+	len2 = str_len(s2);
+	result = malloc(sizeof(int) * (len1 + len2 + 1));
+	for (i = 0; i < len1 + len2 + 1; i++)
+		result[i] = 0;
+	compute_mult(len1, len2, s1, s2, result);
+	for (i = 0; i < len1 + len2; i++)
+	{
+		if (result[i])
+			checker = 1;
+		if (checker)
+			putchar(result[i] + 48);
+	}
+	if (checker == 0)
+		putchar('0');
 	putchar('\n');
+	free(result);
 	return (0);
 }
