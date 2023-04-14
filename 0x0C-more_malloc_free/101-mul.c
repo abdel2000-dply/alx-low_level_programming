@@ -39,17 +39,42 @@ void printString(char *s)
 	_putchar('\n');
 }
 /**
+ * _calloc - allocates memory for an array, using malloc
+ * @nmemb: size of an array
+ * @size: size of memory
+ *
+ * Return: a pointer to the allocated memory
+ */
+void *_calloc(unsigned int nmemb, unsigned int size)
+{
+	char *str;
+	unsigned int i;
+
+	if (nmemb == 0 || size == 0)
+		return (NULL);
+
+	str = malloc(nmemb * size);
+	if (str == NULL)
+		return (NULL);
+
+	for (i = 0; i < nmemb * size; i++)
+		str[i] = 0;
+
+	return (str);
+}
+/**
  * multiply - multiplies two positive numbers
  * @num1: first number to multiply
  * @num2: second number to multiply
  */
 void multiply(char *num1, char *num2)
 {
-	int i, j, len1, len2, *result;
+	int i, j, len1, len2;
+	int *result;
 
 	len1 = str_len(num1);
 	len2 = str_len(num2);
-	*result	= malloc(len1 + len2, sizeof(int));
+	result = _calloc(len1 + len2, sizeof(int));
 
 	if (result == NULL)
 	{
