@@ -45,10 +45,11 @@ void printString(char *s)
  */
 void multiply(char *num1, char *num2)
 {
-	int i, j;
-	int len1 = str_len(num1);
-	int len2 = str_len(num2);
-	int *result = calloc(len1 + len2, sizeof(int));
+	int i, j, len1, len2, *result;
+
+	len1 = str_len(num1);
+	len2 = str_len(num2);
+	*result	= malloc(len1 + len2, sizeof(int));
 
 	if (result == NULL)
 	{
