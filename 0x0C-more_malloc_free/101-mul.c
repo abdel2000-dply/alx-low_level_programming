@@ -52,7 +52,7 @@ void multiply(char *num1, char *num2)
 
 	if (result == NULL)
 	{
-		printf("Error\n");
+		printString("Error");
 		exit(98);
 	}
 	for (i = len1 - 1; i >= 0; i--)
@@ -85,11 +85,10 @@ int main(int argc, char **argv)
 {
 	int i, j;
 	char *num1, *num2;
-	char e[] = "Error";
 
 	if (argc != 3)
 	{
-		printString(e);
+		printString("Error");
 		exit(98);
 	}
 	for (i = 1; i < argc; i++)
@@ -98,7 +97,7 @@ int main(int argc, char **argv)
 		{
 			if (!is_digit(argv[i][j]))
 			{
-				printString(e);
+				printString("Error");
 				exit(98);
 			}
 		}
