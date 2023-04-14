@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 /**
  * is_digit - checks if a character is a digit
  * @c: the character to check
@@ -31,23 +32,24 @@ void printString(char *s)
  */
 void multiply(char *num1, char *num2)
 {
+	int i, j;
 	int len1 = strlen(num1);
 	int len2 = strlen(num2);
 	int *result = calloc(len1 + len2, sizeof(int));
 
-	for (int i = len1 - 1; i >= 0; i--)
+	for (i = len1 - 1; i >= 0; i--)
 	{
-		for (int j = len2 - 1; j >= 0; j--)
+		for (j = len2 - 1; j >= 0; j--)
 		{
 			result[i + j + 1] += (num1[i] - '0') * (num2[j] - '0');
 		}
 	}
-	for (int i = len1 + len2 - 1; i > 0; i--)
+	for (i = len1 + len2 - 1; i > 0; i--)
 	{
 		result[i - 1] += result[i] / 10;
 		result[i] %= 10;
 	}
-	for (int i = 0; i < len1 + len2; i++)
+	for (i = 0; i < len1 + len2; i++)
 	{
 		putchar(result[i] + '0');
 	}
@@ -62,8 +64,8 @@ void multiply(char *num1, char *num2)
  */
 int main(int argc, char **argv)
 {
-	int i;
-	char num1, num2;
+	int i, j;
+	char *num1, *num2;
 	char e[] = "Error";
 
 	if (argc != 3)
@@ -71,9 +73,9 @@ int main(int argc, char **argv)
 		printString(e);
 		exit(98);
 	}
-	for (int i = 1; i < argc; i++)
+	for (i = 1; i < argc; i++)
 	{
-		for (int j = 0; argv[i][j] != '\0'; j++)
+		for (j = 0; argv[i][j] != '\0'; j++)
 		{
 			if (!is_digit(argv[i][j]))
 			{
@@ -85,5 +87,6 @@ int main(int argc, char **argv)
 	num1 = argv[1];
 	num2 = argv[2];
 	multiply(num1, num2);
+	_putchar('\n');
 	return (0);
 }
