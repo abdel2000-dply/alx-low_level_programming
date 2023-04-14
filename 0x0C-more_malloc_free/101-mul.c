@@ -1,7 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 /**
  * is_digit - checks if a character is a digit
  * @c: the character to check
@@ -11,6 +10,20 @@
 int is_digit(char c)
 {
 	return (c >= '0' && c <= '9');
+}
+/**
+ * str_len - computes the length of a string
+ * @s: the string to compute the length of
+ * Return: the length of s
+ */
+size_t str_len(char *s)
+{
+	size_t i = 0;
+
+	while (s[i])
+		i++;
+
+	return (i);
 }
 /**
  * printString - prints a string
@@ -33,10 +46,15 @@ void printString(char *s)
 void multiply(char *num1, char *num2)
 {
 	int i, j;
-	int len1 = strlen(num1);
-	int len2 = strlen(num2);
+	int len1 = str_len(num1);
+	int len2 = str_len(num2);
 	int *result = calloc(len1 + len2, sizeof(int));
 
+	if (result == NULL)
+	{
+		printf("Error\n");
+		exit(98);
+	}
 	for (i = len1 - 1; i >= 0; i--)
 	{
 		for (j = len2 - 1; j >= 0; j--)
@@ -51,8 +69,9 @@ void multiply(char *num1, char *num2)
 	}
 	for (i = 0; i < len1 + len2; i++)
 	{
-		putchar(result[i] + '0');
+		_putchar(result[i] + '0');
 	}
+	_putchar('\n');
 	free(result);
 }
 /**
@@ -87,6 +106,5 @@ int main(int argc, char **argv)
 	num1 = argv[1];
 	num2 = argv[2];
 	multiply(num1, num2);
-	_putchar('\n');
 	return (0);
 }
