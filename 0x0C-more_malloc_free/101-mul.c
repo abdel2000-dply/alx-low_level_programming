@@ -67,20 +67,12 @@ void *_calloc(unsigned int nmemb, unsigned int size)
  * @num1: first number to multiply
  * @num2: second number to multiply
  */
-void multiply(char *num1, char *num2)
+void multiply(char *num1, char *num2, int *result)
 {
 	int i, j, len1, len2;
-	int *result;
 
 	len1 = str_len(num1);
 	len2 = str_len(num2);
-	result = _calloc(len1 + len2, sizeof(int));
-
-	if (result == NULL)
-	{
-		printString("Error");
-		exit(98);
-	}
 	for (i = len1 - 1; i >= 0; i--)
 	{
 		for (j = len2 - 1; j >= 0; j--)
@@ -93,12 +85,6 @@ void multiply(char *num1, char *num2)
 		result[i - 1] += result[i] / 10;
 		result[i] %= 10;
 	}
-	for (i = 0; i < len1 + len2; i++)
-	{
-		_putchar(result[i] + '0');
-	}
-	_putchar('\n');
-	free(result);
 }
 /**
  * main - multiplies two positive numbers
@@ -107,9 +93,9 @@ void multiply(char *num1, char *num2)
  *
  * Return: 0 on success, 98 on error
  */
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-	int i, j;
+	int i, j, *result, len1, len2;
 	char *num1, *num2;
 
 	if (argc != 3)
@@ -129,7 +115,16 @@ int main(int argc, char **argv)
 		}
 	}
 	num1 = argv[1];
-	num2 = argv[2];
-	multiply(num1, num2);
+        num2 = argv[2];
+	len1 = str_len(num1);
+        len2 = str_len(num2);
+	result = _calloc(len1 + len2, sizeof(int));
+	multiply(num1, num2, result);
+	for (i = 0; i < len1 + len2; i++)
+	{
+		_putchar(result[i] + '0');
+	}
+	_putchar('\n');
+	free(result);
 	return (0);
 }
