@@ -3,7 +3,7 @@
 /**
  * print_name - prints a name
  * @name: name of a person
- * @f: func that prints using printf
+ * @f: fucntion pointer to a func
  */
 void print_name(char *name, void (*f)(char *))
 {
