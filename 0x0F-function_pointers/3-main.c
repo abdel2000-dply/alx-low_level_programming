@@ -1,6 +1,6 @@
 #include "3-calc.h"
 #include <stdio.h>
-#include <stllib.h>
+#include <stdlib.h>
 
 /**
  * main - entry point
@@ -12,6 +12,7 @@
 int main(int ac, char *av[])
 {
 	int num1, num2, result;
+	char a;
 	int (*op_func)(int, int);
 
 	if (ac != 4)
@@ -22,13 +23,14 @@ int main(int ac, char *av[])
 
 	num1 = atoi(av[1]);
 	num2 = atoi(av[3]);
-	op_fun = get_op_func(argv[2]);
+	op_func = get_op_func(av[2]);
 	if (op_func == NULL)
 	{
 		printf("Error\n");
 		exit(99);
 	}
-	if ((av[2] == '/' || av[2] == '%') && num2 == 0)
+	a = *av[2];
+	if ((a == '/' || a == '%') && num2 == 0)
 	{
 		printf("Error\n");
 		exit(100);
