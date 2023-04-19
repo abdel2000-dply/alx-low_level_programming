@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 		return (2);
 	}
 	start = (char *) &main;
-	for ( i = 0; i < num_bytes; i++)
+	for (i = 0; i < num_bytes; i++)
 	{
 		printf("%02x ", start[i] & 0xff);
 	}
