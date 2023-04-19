@@ -25,6 +25,11 @@ int main(int argc, char *argv[])
 	start = (char *)main;
 	for (i = 0; i < num_bytes; i++)
 	{
+		if (i == num_bytes - 1)
+		{
+			printf("%02x ", start[i] & 0xff);
+			break;
+		}
 		printf("%02x ", start[i] & 0xff);
 	}
 	printf("\n");
