@@ -1,5 +1,5 @@
 #include "3-calc.h"
-
+#include <stdio.h>
 /**
  * main - entry point
  * @ac: number of arguments
@@ -22,7 +22,7 @@ int main(int ac, char *av[])
 	num1 = atoi(av[1]);
 	num2 = atoi(av[3]);
 	op_func = get_op_func(av[2]);
-	if (op_func == NULL)
+	if (!op_func)
 	{
 		printf("Error\n");
 		exit(99);
