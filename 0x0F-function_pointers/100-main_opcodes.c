@@ -27,12 +27,11 @@ int main(int argc, char *argv[])
 	{
 		if (i == num_bytes - 1)
 		{
-			printf("%02x ", start[i] & 0xff);
+			printf("%02hhx\n", start[i]);
 			break;
 		}
-		printf("%02x ", start[i] & 0xff);
+		printf("%02hhx ", start[i]);
 	}
-	printf("\n");
 
 	return (0);
 }
