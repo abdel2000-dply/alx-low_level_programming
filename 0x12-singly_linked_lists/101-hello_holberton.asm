@@ -5,7 +5,7 @@ section .text
 	extern printf
 main:
 	mov rdi, msg
-	xor eax. eax
+	xor eax, eax
 	call printf
 
 	ret
