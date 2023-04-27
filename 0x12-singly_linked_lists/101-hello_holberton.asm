@@ -1,18 +1,18 @@
 section .data
-    msg db 'Hello, Holberton', 10, 0
+	msg db 'Hello, Holberton', 10, 0
+	msglen: equ $ - msg
 
 section .text
-    global main
-    extern printf
+	global main
+	extern printf
 
 main:
-    push rbp
-    mov rbp, rsp
+	mov rax, 1
+	mov rdi, 1
+	mov rsi, msg
+	mov rdx, msglen
+	syscall
 
-    mov rdi, msg
-    xor eax, eax
-    call printf
-
-    mov rsp, rbp
-    pop rbp
-    ret
+	mov rax, 60
+	mov rdi, 0
+	syscall
