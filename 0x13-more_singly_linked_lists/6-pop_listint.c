@@ -5,7 +5,7 @@
  * @head: pointer to the head of the list
  *
  * Return: the head node's data (n)
- * 		0 if the linked list is empty
+ *		0 if the linked list is empty
  */
 int pop_listint(listint_t **head)
 {
