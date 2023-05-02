@@ -1,9 +1,8 @@
 #include "lists.h"
 
 /**
- * print_listint_safe - prints a linked list
- *
- * @head: pointer to the head of the list
+ * print_listint_safe - prints a linked list.
+ * @head: pointer to the head of the list.
  *
  * Return: number of nodes in the linked list
  */
@@ -19,13 +18,13 @@ size_t print_listint_safe(const listint_t *head)
 
 	while (curr)
 	{
-		printf("[%p] %d\n", curr, curr->n);
+		printf("[%p] %d\n", (void *)curr, curr->n);
 		i++;
 		tmp = curr->next;
 
 		if (tmp >= curr)
 		{
-			printf("-> [%p] %d\n", tmp, tmp->n);
+			printf("-> [%p] %d\n", (void *)tmp, tmp->n);
 			break;
 		}
 		curr = tmp;
