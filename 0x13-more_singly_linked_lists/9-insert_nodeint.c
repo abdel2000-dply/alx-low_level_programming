@@ -13,7 +13,8 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	listint_t *new, *prev = NULL, *curr = *head;
 	unsigned int i;
 
-	/*I think we can use the head directly but
+	/*
+	* I think we can use the head directly but
 	* its gonna be complicated
 	*/
 	if (!head)
@@ -25,7 +26,7 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 
 	new->n = n;
 
-	for(i = 0; curr && i < idx; i++)
+	for (i = 0; curr && i < idx; i++)
 	{
 		prev = curr;
 		curr = curr->next;
@@ -38,7 +39,10 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	}
 
 	new->next = curr;
-	prev->next = new;
+	if (!prev)
+		*head = new;
+	else
+		prev->next = new;
 
 	return (new);
 }
