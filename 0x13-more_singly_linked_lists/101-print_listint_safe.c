@@ -25,7 +25,7 @@ size_t print_listint_safe(const listint_t *head)
 		if (tmp >= curr)
 		{
 			printf("-> [%p] %d\n", (void *)tmp, tmp->n);
-			exit(98);
+			break;
 		}
 		curr = tmp;
 	}
