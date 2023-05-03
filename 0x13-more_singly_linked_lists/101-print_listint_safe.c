@@ -8,7 +8,7 @@
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *curr, *tmp;
+	const listint_t *curr, *tmp = NULL;
 	size_t i = 0;
 
 	if (!head)
@@ -22,7 +22,7 @@ size_t print_listint_safe(const listint_t *head)
 		i++;
 		tmp = curr->next;
 
-		if (tmp > curr)
+		if (tmp >= curr)
 		{
 			printf("-> [%p] %d\n", (void *)tmp, tmp->n);
 			break;
