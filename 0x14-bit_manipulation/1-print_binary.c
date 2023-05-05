@@ -6,22 +6,20 @@
  */
 void print_binary(unsigned long int n)
 {
-	unsigned long int m = 1;
+	unsigned long int m = ULONG_MAX;
 
-	if (n == 0 || !n)
+	if (n == 0)
 	{
 		_putchar('0');
 		return;
 	}
 
-	while (m <= n)
+	while (m > 0 && !(n & m))
 	{
-		m <<= 1;
-	}
-	if (m > n)
 		m >>= 1;
+	}
 
-	while (m)
+	while (m > 0)
 	{
 		if (n & m)
 			_putchar('1');
