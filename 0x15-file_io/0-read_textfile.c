@@ -19,7 +19,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if(!b)
 		return (0);
 
-	fpt = open(filename, 0_RDONLY);
+	fpt = open(filename, O_RDONLY);
 	if (fpt == -1)
 	{
 		free(b);
@@ -34,7 +34,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 	}
 
-	nw = write(STDOUT_FTLENO, b, nr);
+	nw = write(STDOUT_FILENO, b, nr);
 	if (nw == -1 || nw != nr)
 	{
 		free(b);
