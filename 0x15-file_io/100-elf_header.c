@@ -15,8 +15,10 @@ void print_error(char *msg)
  */
 void print_magic(unsigned char *magic)
 {
+	int i;
+
 	printf("  Magic:   ");
-	for (int i = 0; i < EI_NIDENT; i++)
+	for (i = 0; i < EI_NIDENT; i++)
 		printf("%02x ", magic[i]);
 	printf("\n");
 }
@@ -178,6 +180,7 @@ int main(int argc, char *argv[])
 {
 	char *filename = argv[1];
 	int fd = open(filename, O_RDONLY);
+	Elf64_Ehdr ehdr;
 	ssize_t n = read(fd, &ehdr, sizeof(ehdr));
 
 	if (argc < 2)
@@ -188,8 +191,6 @@ int main(int argc, char *argv[])
 	{
 		print_error("Could not open file");
 	}
-
-	Elf64_Ehdr ehdr;
 
 	if (n < 0)
 	{
