@@ -12,8 +12,10 @@ all: ${OBJ}
 
 clear:
 		${RM} *~ ${NAME}
+
 oclear:
 		$(RM) $(OBJ)
+
 fclean: clean oclean
 
 re: fclean all
