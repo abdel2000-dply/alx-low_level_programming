@@ -10,7 +10,7 @@ void print_array(int *array, size_t left, size_t right)
 {
 	size_t i;
 
-	for(i = left; i <= right; i++)
+	for (i = left; i <= right; i++)
 	{
 		printf("%d", array[i]);
 		if (i < right)
@@ -20,7 +20,7 @@ void print_array(int *array, size_t left, size_t right)
 }
 
 /**
- * binary_search - searches for a value in a sorted array using the Binary search
+ * binary_search - searches for a value in a sorted array, Binary search
  * @array: pointer to the first element of the array to search in
  * @size: size of the array
  * @value: the value to search for
@@ -35,7 +35,7 @@ int binary_search(int *array, size_t size, int value)
 	if (!array)
 		return (-1);
 
-	while(left <= right)
+	while (left <= right)
 	{
 		printf("Searching in array: ");
 		print_array(array, left, right);
